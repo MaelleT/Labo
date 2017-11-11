@@ -9,7 +9,22 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var tasks = require('./routes/tasks');
 
+
+var db = require('./databases/db');
+
 var app = express();
+
+// Connect to POstgres on start
+
+db.connect(
+    (err)=> {
+        if (err) {
+            console.log('Unable to connect to Postgres.');
+            process.exit(1);
+        }
+    }
+);
+
 
 
 // view engine setup

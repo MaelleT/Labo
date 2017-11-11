@@ -1,28 +1,20 @@
-const pg = require('pg');
-
+var db = require('../databases/db.js')
 
 // Display list of all Task
 exports.task_list = function(req, res, next) {
-    //res.send('NOT IMPLEMENTED: Tasks list');
 
-    const connectionString = process.env.DATABASE_URL;
-
-    const db = new pg.Client(connectionString);
-    db.connect();
     const query = {
     // give the query a unique name
     name: 'fetch-all-task',
     text: 'SELECT * FROM task',
     };
 
-    db.query(query, function(err, result){
+    db.get().query(query, function(err, result){
         if (err) {
             console.log(err.stack);
             res.send('ERROR');
-
         } else {
             res.render('task', { listeTasks : result });
-
         }
     });
 
@@ -31,10 +23,6 @@ exports.task_list = function(req, res, next) {
 // Display detail page for a specific Task
 exports.task_detail = function(req, res, next) {
 
-    const connectionString = process.env.DATABASE_URL;
-
-    const db = new pg.Client(connectionString);
-    db.connect();
     const query = {
     // give the query a unique name
     name: 'fetch-task',
@@ -42,7 +30,7 @@ exports.task_detail = function(req, res, next) {
     values: [req.params.id]
     };
 
-    db.query(query, function(err, result){
+    db.get().query(query, function(err, result){
         if (err) {
             console.log(err.stack);
             res.send('ERROR');
