@@ -3,5 +3,6 @@ extends layout
 block content
   p Liste des taches
       ul
-        each val in listeTasks.rows
-            li= val['libelle']
+        each task in listeTasks
+            li= task.libelle
+
