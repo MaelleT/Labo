@@ -13,5 +13,17 @@ router.get('/', function(req, res, next) {
 //GET all Bookmarks
 router.get('/bookmarks', bookmarkController.bookmark_list);
 
+//Get one Bookmark
+router.get('/bookmarks/:id', bookmarkController.bookmark_detail);
+
+//ajout d'un bookmark
+router.post('/bookmarks',bookmarkController.bookmark_ajout);
+
+router.put('/bookmarks/:id',bookmarkController.bookmark_maj);
+
+router.delete('/bookmarks',bookmarkController.bookmark_clear);
+
+router.delete('/bookmarks/:id',bookmarkController.bookmark_delete);
+
 
 module.exports = router;
