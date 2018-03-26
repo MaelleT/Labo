@@ -1,8 +1,21 @@
 extends layout
 
+
 block content
   p Liste des taches
       ul
         each task in listeTasks
             li= task.libelle
 
+
+  p
+    button(type="button",id="ok") Ajouter une nouvelle tâche
+
+    div#ajout(style='display:none')
+      form(method='POST' action='/tasks/')
+        label(for='libelle') Libelle
+        input(type='text', placeholder='nouvelle tâche' name='libelle')
+        button(type='submit') Ajouter
+
+        script.
+            document.getElementById("ok").addEventListener("click", test);
